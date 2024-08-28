@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Sign Up</title>
+    <!-- Link to Bootstrap (Optional) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<div class="login">
+    <div class="imgs"><img src="{% static 'images/welcome.webp' %}"></div>
+    <div class="login-form">
+        SIGN UP
+        <form method="post">
+            {% csrf_token %}
+            <table class="table">
+                {% for field in form %}
+                <tr class="form-group">
+                    <!-- Table cell for label -->
+                    <td>{{ field.label_tag }}</td>
+                    <!-- Table cell for input field -->
+                    <td>{{ field }}</td>
+                    <!-- Table cell for errors, if any -->
+                    <td class="text-danger">{{ field.errors }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <button type="submit">Sign Up</button>
+        </form>
+        <!--        <form action="" method="post">-->
+        <!--            {% csrf_token %}-->
+        <!--            <table>-->
+        <!--                <tr>-->
+        <!--                    <td>Id</td>-->
+        <!--                </tr>-->
+        <!--                <tr>-->
+        <!--                    <td><input type="text" name="id" required></td>-->
+        <!--                    <br>-->
+        <!--                </tr>-->
+        <!--                <tr class="pass">-->
+        <!--                    <td><br>Password</td>-->
+        <!--                </tr>-->
+        <!--                <tr>-->
+        <!--                    <td><input type="password" name="password" required></td>-->
+        <!--                    <br>-->
+        <!--                </tr>-->
+        <!--                <tr class="pass">-->
+        <!--                    <td><br>Confirm Password</td>-->
+        <!--                </tr>-->
+        <!--                <tr>-->
+        <!--                    <td><input type="password" name="cnfpass" required></td>-->
+        <!--                    <br>-->
+        <!--                </tr>-->
+        <!--            </table>-->
+        <!--            <input type="submit" value="Sign Up"><br><br>-->
+
+        <!--            {% for msg in messages %}-->
+        <!--            {% if msg == "Registered Successfully" %}-->
+        <!--            <div class="success_message">-->
+        <!--                {{msg}}-->
+        <!--            </div>-->
+        <!--            {% else %}-->
+        <!--            <div class="err_message">-->
+        <!--                {{msg}}-->
+        <!--            </div>-->
+        <!--            {% endif %}-->
+        <!--            {% endfor %}-->
+
+        <!--        </form>-->
+    </div>
+</div>
+<!-- JavaScript for Bootstrap (Optional) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
