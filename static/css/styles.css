@@ -1,76 +1,47 @@
-/* Centering the login container */
-body {
-    background-color: #f8f9fa; /* Light background color */
+/* static/css/styles.css */
+
+.sidebar {
+    height: 100vh;
+    position: fixed;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+/*--------------------------Attendence css Start---------------------------------- */
+
+.combined-attendance-summary {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full height to center vertically */
-    margin: 0; /* Remove default margin */
-    font-family: 'Arial', sans-serif; /* Default font */
+    justify-content: space-around;
+    margin-bottom: 20px;
 }
 
-/* Styling for the signup container */
-.login {
-    background-color: #ffffff; /* White background for the form container */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
-    width: 100%; /* Set width to 50% of the viewport width */
-    padding: 30px; /* Padding inside the form container */
-    text-align: center; /* Center the text */
-    max-width: 600px; /* Set a maximum width for larger screens */
-    min-width: 300px; /* Set a minimum width for smaller screens */
+.combined-attendance-summary .attendance-block {
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin: 0 10px;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
 }
 
-/* Image styling */
-.login .imgs img {
-    width: 100%; /* Full width of the container */
-    border-radius: 10px; /* Rounded corners for the image */
-    margin-bottom: 20px; /* Space below the image */
+.attendance-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
 }
 
-/* Form styling */
-.login-form {
-    font-size: 18px; /* Slightly larger font size */
-    color: #333; /* Dark gray text color */
+.attendance-block {
+    width: 10px;
+    height: 10px;
+    background-color: #ff00ff; /* Adjust color as needed */
+    margin: 2px;
+    cursor: pointer;
 }
 
-.login-form form {
-    margin-top: 20px; /* Space above the form */
+.attendance-block:hover {
+    opacity: 0.7;
 }
-
-/* Button styling */
-.login-form button[type="submit"] {
-    background-color: #007bff; /* Primary blue color */
-    color: white; /* White text */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    padding: 10px 20px; /* Padding inside the button */
-    font-size: 16px; /* Button text size */
-    cursor: pointer; /* Pointer cursor on hover */
-    margin-top: 20px; /* Space above the button */
-}
-
-/* Button hover effect */
-.login-form button[type="submit"]:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
-/* Success and error message styling */
-.success_message, .err_message {
-    margin-top: 20px; /* Space above messages */
-    padding: 10px; /* Padding inside the message */
-    border-radius: 5px; /* Rounded corners */
-    font-weight: bold; /* Bold text */
-}
-
-.success_message {
-    background-color: #d4edda; /* Light green background */
-    color: #155724; /* Dark green text */
-    border: 1px solid #c3e6cb; /* Green border */
-}
-
-.err_message {
-    background-color: #f8d7da; /* Light red background */
-    color: #721c24; /* Dark red text */
-    border: 1px solid #f5c6cb; /* Red border */
-}
+/*--------------------------Attendence css End---------------------------------- */

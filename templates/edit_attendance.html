@@ -1,0 +1,16 @@
+<!-- templates/edit_attendance.html -->
+{% extends 'base.html' %}
+
+{% block title %}Edit Attendance{% endblock %}
+
+{% block content %}
+<h2>Edit Attendance Record</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+</form>
+
+<a href="{% url 'attendance_record_list' %}">Back to Attendance Records</a>
+{% endblock %}

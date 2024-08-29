@@ -1,14 +1,16 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.models import Group
 from .forms import UserSignupForm
 from .models import *
 from django.contrib.auth import authenticate, login
 
 
-
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+
     if request.method == 'POST':
         form = UserSignupForm(request.POST)
         if form.is_valid():
@@ -26,7 +28,7 @@ def signup(request):
                 if role == 'Admin':
                     admin_group = Group.objects.get(name='Admin')
                     user.groups.add(admin_group)
-                    AdminProfile.objects.create(user_profile=user_profile )
+                    AdminProfile.objects.create(user_profile=user_profile)
                 elif role == 'HR':
                     hr_group = Group.objects.get(name='HR')
                     user.groups.add(hr_group)
@@ -54,22 +56,34 @@ def signup(request):
 
 
 def userlogin(request):
-    if request.method == 'POST':
+    if request.user.is_authenticated:
+        return redirect('index')
 
-        username = request.POST.get('username')
+    if request.method == 'POST':
         password = request.POST.get('password')
         eid = request.POST.get('eid')
 
-        # Check if 'eid' is provided (for employees)
         if eid:
-            user = authenticate(request, eid=eid, password=password)
-        else:
-            user = authenticate(request, username=username, password=password)
+            # Handle special case for admin login
+            if eid == 'admin':
+                user = authenticate(request, username=eid, password=password)
+                if user is not None and user.is_staff:  # Check if the user is admin and has staff status
+                    login(request, user)
+                    return redirect('index')  # Redirect to the admin panel
 
-        if user is not None:
-            login(request, user)
-            return redirect('index')  # Redirect to a home page or dashboard after login
-        else:
-            messages.error(request, 'Invalid login credentials.')
+            # Employee, HR, Manager login with eid
+            user = authenticate(request, eid=eid, password=password)
+
+            if user is not None:
+                login(request, user)
+                messages.success(request, ' Login Successful.')
+                return redirect('index')  # Redirect to a custom dashboard view
+            else:
+                messages.error(request, 'Invalid login credentials.')
 
     return render(request, 'login.html')
+
+
+def userlogout(request):
+    logout(request)
+    return redirect('login')

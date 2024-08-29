@@ -1,0 +1,30 @@
+<!-- templates/sidebar.html -->
+<div class="col-md-2 bg-light sidebar">
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action active">Dashboard</a>
+        <a href="#" class="list-group-item list-group-item-action">Assign Work</a>
+        <a href="#" class="list-group-item list-group-item-action">Notice</a>
+        <a href="#" class="list-group-item list-group-item-action">Request</a>
+        <a href="{% url 'attendance' %}" class="list-group-item list-group-item-action">Attendance</a>
+        {% if request.user.is_superuser %}
+        <a href="#" class="list-group-item list-group-item-action">Attendance Records</a>
+        {% endif %}
+
+<!--        {% if request.user.is_authenticated %}-->
+<!--           not returning any thing-->
+            {% for record in attendance_records %}
+                <a href="{% url 'edit_attendance' pk=record.id %}" class="list-group-item list-group-item-action">Edit
+                    Attendance for {{ record.date }}</a>
+                {% endfor %}
+<!--        {% endif %}-->
+
+        <a href="#" class="list-group-item list-group-item-action">My Work</a>
+        <a href="#" class="list-group-item list-group-item-action">Edit Assigned Work</a>
+        <a href="{% url 'logout' %}" class="list-group-item list-group-item-action">Logout</a>
+    </div>
+    <!--    <div class="container">-->
+    {{user.usrname}}
+    <br>{{user}}
+    <br>{{username}}
+    <!--    </div>-->
+</div>

@@ -9,47 +9,70 @@
     <!-- Link to Bootstrap (Optional) -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
 </head>
 <body>
-    <div class="container">
-        <div class="row justify-content-center align-items-center min-vh-100">
-            <div class="col-md-8">
-                <div class="card login-card shadow">
-                    <div class="row no-gutters">
-                        <!-- Left Image Section -->
-                        <div class="col-md-6">
-                            <img src="{% static 'images/Team.jpg' %}" class="card-img" alt="Login Image">
-                        </div>
-                        <!-- Right Form Section -->
-                        <div class="col-md-6">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">LOGIN</h5>
-                                <form method="post">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                        <label for="eid">Employee Id</label>
-                                        <input type="text" class="form-control" id="eid" placeholder="Enter your  Employee ID">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-block">Login</button>
-                                    <div class="text-center mt-3">
-                                        <a href="{% url 'signup' %}">New Employee</a>
-                                    </div>
-                                </form>
+
+<div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+        <div class="col-md-8">
+            <div class="card login-card shadow">
+                <div class="row no-gutters">
+
+
+                    <!-- Left Image Section -->
+                    <div class="col-md-6">
+                        <!-- Messages -->
+                        <div>
+                            {% if messages %}
+                            {% for message in messages %}
+                            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show text-success"
+                                 role="alert">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                        <!--End Messages-->
+
+                        <img src="{% static 'images/Team.jpg' %}" class="card-img" alt="Login Image">
+                    </div>
+
+                    <!-- Right Form Section -->
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">LOGIN</h5>
+                            <form method="post">
+                                {% csrf_token %}
+
+                                <div class="form-group">
+                                    <label for="eid">Employee Id</label>
+                                    <input type="text" class="form-control" id="eid" name="eid"
+                                           placeholder="Enter your  Employee ID">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" name='password'
+                                           placeholder="Enter your password">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                <div class="text-center mt-3">
+                                    <a href="{% url 'signup' %}">New Employee</a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- JavaScript for Bootstrap (Optional) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</div>
+<!-- JavaScript for Bootstrap (Optional) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

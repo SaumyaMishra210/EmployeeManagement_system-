@@ -25,6 +25,7 @@ from EMS.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include("EMS.urls")),
+    path('attendance',include('attendance.urls')),
     path('dashboard',include('dashboard.urls')),
     path('accounts', include('accounts.urls')),
 ]

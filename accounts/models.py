@@ -1,5 +1,4 @@
 import uuid
-
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -10,6 +9,7 @@ ROLE_CHOICES = (
     ('Manager', 'Manager'),
     ('Employee', 'Employee'),
 )
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -23,7 +23,7 @@ class UserProfile(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.user.username} - {self.role} - {self.eid}"
+        return f" {self.user} : {self.eid}"
 
 
 # Role-specific models
@@ -31,22 +31,25 @@ class AdminProfile(models.Model):
     user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Admin Profile for {self.user_profile.user.username}"
+        return f"HR Profile for {self.user_profile}"
+
 
 class HRProfile(models.Model):
     user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"HR Profile for {self.user_profile.user.username}"
+        return f"HR Profile for {self.user_profile}"
+
 
 class ManagerProfile(models.Model):
     user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Manager Profile for {self.user_profile.user.username}"
+        return f"Manager Profile for {self.user_profile}"
+
 
 class EmployeeProfile(models.Model):
     user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Employee Profile for {self.user_profile.user.username}"
+        return f"{self.user_profile.user.username} ({self.user_profile.role}) - {self.user_profile.eid}"

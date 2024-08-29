@@ -1,0 +1,92 @@
+<!-- templates/attendance.html -->
+{% extends 'base.html' %}
+
+{% block title %}Attendance{% endblock %}
+
+{% block content %}
+<h2>Attendance</h2>
+
+<!-- Month and Year Selection Form -->
+<form method="get" action="{% url 'attendance' %}" class="mb-4">
+    <div class="form-group row">
+        <label for="month" class="col-sm-2 col-form-label">Select Month:</label>
+        <div class="col-sm-4">
+            <select name="month" id="month" class="form-control">
+                {% for m in months %}
+                <option value="{{ m.value }}" {% if m.value == selected_month %}selected{% endif %}>
+                    {{ m.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <label for="year" class="col-sm-2 col-form-label">Select Year:</label>
+        <div class="col-sm-4">
+            <select name="year" id="year" class="form-control">
+                {% for y in years %}
+                <option value="{{ y }}" {% if y == selected_year %}selected{% endif %}>
+                    {{ y }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">View {{ employee_name }}'s attendance for {{ month_name }} {{ year }}.</h4>
+
+        <!-- Combined Monthly Summary -->
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Monthly Summary for {{ month_name }} {{ year }}</h5>
+                <div class="combined-attendance-summary">
+                    <div class="attendance-block" title="Late Comings" style="background-color: #ff00ff;">
+                        <span>{{ monthly_summary.late_coming_count }} Late Comings</span>
+                    </div>
+                    <div class="attendance-block" title="Early Goings" style="background-color: #ff69b4;">
+                        <span>{{ monthly_summary.early_going_count }} Early Goings</span>
+                    </div>
+                    <div class="attendance-block" title="Days Attended" style="background-color: #00ff00;">
+                        <span>{{ monthly_summary.days_attended_count }} Days Attended</span>
+                    </div>
+                </div>
+                <p>Total for the month: {{ monthly_summary.total_days }} Days</p>
+            </div>
+        </div>
+
+        <!-- Daily Breakdown -->
+        <div class="row">
+            <div class="col-md-4">
+                <h5>LATE COMING</h5>
+                <div class="attendance-row">
+                    {% for day in late_coming %}
+                    <div class="attendance-block" title="{{ day.date }}"></div>
+                    {% endfor %}
+                </div>
+                <p>Total Late Comings: {{ late_coming_count }} Days</p>
+            </div>
+            <div class="col-md-4">
+                <h5>EARLY GOING</h5>
+                <div class="attendance-row">
+                    {% for day in early_going %}
+                    <div class="attendance-block" title="{{ day.date }}"></div>
+                    {% endfor %}
+                </div>
+                <p>Total Early Goings: {{ early_going_count }} Days</p>
+            </div>
+            <div class="col-md-4">
+                <h5>DAYS ATTENDED</h5>
+                <div class="attendance-row">
+                    {% for day in days_attended %}
+                    <div class="attendance-block" title="{{ day.date }}"></div>
+                    {% endfor %}
+                </div>
+                <p>Total Days Attended: {{ days_attended_count }} Days</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

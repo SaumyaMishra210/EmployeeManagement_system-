@@ -1,112 +1,27 @@
+<!-- templates/base.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
-    <!----======== CSS ======== -->
-    <link rel="stylesheet" href="{% static './css/styles.css' %}">
-    
-    <!----===== Boxicons CSS ===== -->
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link href='https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css' rel='stylesheet'>
-    
-    <title>{% block title %} {% endblock %}
-</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <nav class="sidebar close">
-        <header>
-            <div class="image-text">
-                <span class="image">
-                    <img src="{% static 'assets/logo.png' %}" alt="">
-                </span>
-
-                <div class="text logo-text">
-                    <span class="name">Employee</span>
-                    <span class="profession">Management</span>
-                </div>
-            </div>
-
-            <i class='toggle'></i>
-        </header>
-
-        <div class="menu-bar">
-            <div class="menu">
-
-                <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="/ems/dashboard">
-                            <i class='bx bx-home-alt icon' ></i>
-                            <span class="text nav-text">Dashboard</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="/ems/assignwork">
-                            <i class='bx bx-bar-chart-alt-2 icon' ></i>
-                            <span class="text nav-text">Assign Work</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="/ems/notice">
-                            <i class='bx bx-bell icon'></i>
-                            <span class="text nav-text">Notice</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="/ems/makeRequest">
-                            <i class='bx bx-message-error icon' ></i>
-                            <span class="text nav-text">Request</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="/ems/attendance">
-                            <i class='bx bx-calendar icon' ></i>
-                            <span class="text nav-text">Attendance</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="/ems/mywork">
-                            <i class='bx bx-task icon'></i>
-                            <span class="text nav-text">My Work</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="/ems/editAW">
-                            <i class='bx bx-edit-alt icon' ></i>
-                            <span class="text nav-text">Edit Assigned Works</span>
-                        </a>
-                    </li>
-                    
-                </ul>
-            </div>
-
-            <div class="bottom-content">
-                <li class="">
-                    <a href="/logout">
-                        <i class='bx bx-log-out icon' ></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>                
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'sidebar.html' %}
+            <div class="col-md-10">
+                {% block content %}
+                <!-- Content will be rendered here -->
+                {% endblock %}
             </div>
         </div>
-
-    </nav>
-
-    
-    {% block content %}
-    
-    {% endblock %}
-    
-    
-    <script src="{% static './js/script.js' %}"></script>
-
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
