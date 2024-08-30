@@ -1,5 +1,7 @@
 /* static/css/styles.css */
-
+body {
+    background-color: #d8f9c1; /* Light background color */
+ }
 .sidebar {
     height: 100vh;
     position: fixed;
@@ -36,7 +38,7 @@
 .attendance-block {
     width: 10px;
     height: 10px;
-    background-color: #ff00ff; /* Adjust color as needed */
+    background-color: #00ff00; /* Adjust color as needed */
     margin: 2px;
     cursor: pointer;
 }

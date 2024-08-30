@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2>Modify Attendance for {{ year }}-{{ month }}</h2>
+    <form method="post">
+      {% csrf_token %}
+      {% for form in forms %}
+        <div class="form-group">
+          {{ form.date.label_tag }} {{ form.date }}
+          {{ form.attendance_type.label_tag }} {{ form.attendance_type }}
+        </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary">Save changes</button>
+    </form>
+  </div>
+{% endblock %}

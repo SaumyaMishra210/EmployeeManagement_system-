@@ -13,7 +13,7 @@
         <div class="col-sm-4">
             <select name="month" id="month" class="form-control">
                 {% for m in months %}
-                <option value="{{ m.value }}" {% if m.value == selected_month %}selected{% endif %}>
+                <option value="{{ m.value }}" {% if m.value  == selected_month %}selected{% endif %}>
                     {{ m.name }}
                 </option>
                 {% endfor %}
@@ -32,6 +32,12 @@
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Search</button>
+    <a href="{% url 'get_yearly_attendance_status' %}">
+        <button type="button" class="btn btn-primary">Year Records</button>
+    </a>
+    <a href="{% url 'modify_attendance'  %}">
+        <button type="button">Edit Record</button>
+    </a>
 </form>
 
 <div class="card">
@@ -52,6 +58,9 @@
                     <div class="attendance-block" title="Days Attended" style="background-color: #00ff00;">
                         <span>{{ monthly_summary.days_attended_count }} Days Attended</span>
                     </div>
+                    <div class="attendance-block" title="Days Absent" style="background-color: #fc5555;">
+                        <span>{{ monthly_summary.days_absent_count }} Days Absent</span>
+                    </div>
                 </div>
                 <p>Total for the month: {{ monthly_summary.total_days }} Days</p>
             </div>
@@ -59,7 +68,7 @@
 
         <!-- Daily Breakdown -->
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <h5>LATE COMING</h5>
                 <div class="attendance-row">
                     {% for day in late_coming %}
@@ -68,7 +77,7 @@
                 </div>
                 <p>Total Late Comings: {{ late_coming_count }} Days</p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <h5>EARLY GOING</h5>
                 <div class="attendance-row">
                     {% for day in early_going %}
@@ -77,7 +86,7 @@
                 </div>
                 <p>Total Early Goings: {{ early_going_count }} Days</p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <h5>DAYS ATTENDED</h5>
                 <div class="attendance-row">
                     {% for day in days_attended %}
@@ -86,7 +95,44 @@
                 </div>
                 <p>Total Days Attended: {{ days_attended_count }} Days</p>
             </div>
+            <div class="col-md-3">
+                <h5>DAYS ABSENT</h5>
+                <div class="attendance-row">
+                    {% for day in days_attended %}
+                    <div class="attendance-block" title="{{ day.date }}"></div>
+                    {% endfor %}
+                </div>
+                <p>Total Days Absent: {{ days_absent_count }} Days</p>
+            </div>
         </div>
     </div>
 </div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">View {{ employee_name }}'s attendance for {{ month_name }} {{ year }}.</h4>
+
+        <!-- GitHub-style Attendance Grid -->
+        <div class="attendance-grid">
+            {% for week in attendance_calendar %}
+            <div class="week">
+                {% for day in week %}
+                <div class="day" title="{{ day.date|date:'Y-m-d' }}: {{ day.status }}"
+                     style="background-color: {{ day.color }};"></div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Legend -->
+<div class="legend mt-4">
+    <span>Less</span>
+    <div class="day legend-color" style="background-color: #cccccc;"></div>
+    <div class="day legend-color" style="background-color: #f5caf3;"></div>
+    <div class="day legend-color" style="background-color: #f6a2eb;"></div>
+    <div class="day legend-color" style="background-color: #ea6cfa;"></div>
+    <span>More</span>
+</div>
+
 {% endblock %}

@@ -3,7 +3,8 @@ from . import views
 
 urlpatterns = [
     path('/AIndex/', views.attendance_view, name='attendance'),
-    # path('attendanceList/', views.attendance_view, name='attendanceList'),
-    path('attendance/edit/<str:pk>/', views.edit_attendance_view, name='edit_attendance'),
+    path('/attendanceList/', views.attendance_list, name='attendanceList'),
+    path('/modify/', views.modify_attendance, name='modify_attendance'),
+    path('/get_yearly_attendance_status/',views.get_yearly_attendance_status,name='get_yearly_attendance_status'),
 
 ]
