@@ -33,14 +33,16 @@
     </div>
     <button type="submit" class="btn btn-primary">Search</button>
 
+
     <a href="{% url 'get_yearly_attendance_status' %}">
         <button type="button" class="btn btn-primary">Year Records</button>
     </a>
 
+    {% if request.user.is_authenticated %}
     <a href="{% url 'modify_attendance'  %}">
         <button type="button" class="btn btn-primary">Edit Record</button>
     </a>
-
+    {% endif %}
 </form>
 
 <div class="card">
@@ -112,12 +114,13 @@
         <h4 class="card-title">View {{ employee_name }}'s attendance for {{ month_name }} {{ year }}.</h4>
 
         <!-- GitHub-style Attendance Grid -->
-        <div class="attendance-grid">
+        <div class="month">
             {% for week in attendance_calendar %}
-            <div class="week">
+            <div class="month-grid">
                 {% for day in week %}
-                <div class="day" title="{{ day.date|date:'Y-m-d' }}: {{ day.status }}"
-                     style="background-color: {{ day.color }};"></div>
+<!--                {{ day.date|date:'d' }}-->
+                <div class="day days" title="{{ day.date|date:'Y-m-d' }}: {{ day.status }}"
+                     style="background-color: {{ day.color }}; "></div>
                 {% endfor %}
             </div>
             {% endfor %}
@@ -136,5 +139,23 @@
     <div class="day legend-color" style="background-color: #ea6cfa;"></div>
     <span>More</span>
 </div>
+<style>
+    .day{
+    margin:1px;
 
+}
+    .days{
+        border-radius:3px;
+     }
+    .month {
+        flex: 0 0 auto;
+        width: 200px;
+        border:none;
+    }
+    .month-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 1px;
+     }
+</style>
 {% endblock content %}
