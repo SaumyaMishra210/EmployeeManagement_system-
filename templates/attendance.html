@@ -71,13 +71,13 @@
         <div class="row ">
             <div class="col-md-4 ">
                     <h5>LATE COMING</h5>
-                    <div class="attendance-row">
+                    <div class="attendance-row ">
                         {% if monthly_summary.late_coming_count %}
                             {% for day in monthly_summary.late_coming_count %}
-                            <div class="day" title="{{ day.date }}" style="background-color: #f6a2eb;"></div>
+                                <div class="day rounded" title="{{ day.date }}" style="background-color: #f6a2eb;"></div>
                             {% endfor %}
                         {% else %}
-                            <div class="day"   style="background-color: #cccccc;"></div>
+                            <div class="day rounded"   style="background-color: #cccccc;"></div>
                         {%endif %}
                     </div>
                     <p>Total Late Comings: {{ monthly_summary.late_coming }} Days</p>
@@ -86,7 +86,7 @@
                     <h5>EARLY GOING</h5>
                     <div class="attendance-row">
                         {% for day in monthly_summary.early_going_count %}
-                        <div class="day" title="{{ day.date }}" style="background-color: #f6a2eb;"></div>
+                        <div class="day rounded" title="{{ day.date }}" style="background-color: #f6a2eb;"></div>
                         {% endfor %}
                     </div>
                     <p>Total Early Goings: {{ monthly_summary.early_going }} Days</p>
@@ -95,7 +95,7 @@
                     <h5>DAYS ABSENT</h5>
                     <div class="attendance-row">
                          {% for day in monthly_summary.days_absent_count %}
-                        <div class="day" title="{{ day.date }}" style="background-color: #f6a2eb;"></div>
+                        <div class="day rounded" title="{{ day.date }}" style="background-color: #f6a2eb;"></div>
                         {% endfor %}
                     </div>
                     <p>Total Days Absent: {{ monthly_summary.days_absent }} Days</p>
@@ -108,17 +108,17 @@
         </div>
     </div>
 </div>
+
 <!--GRid Github -->
-<div class="card">
+<div class="card mt-3">
     <div class="card-body">
-        <h4 class="card-title">View {{ employee_name }}'s attendance for {{ month_name }} {{ year }}.</h4>
+        <h4 class="card-title">{{ month_name }} {{ year }}.</h4>
 
         <!-- GitHub-style Attendance Grid -->
         <div class="month">
             {% for week in attendance_calendar %}
             <div class="month-grid">
                 {% for day in week %}
-<!--                {{ day.date|date:'d' }}-->
                 <div class="day days" title="{{ day.date|date:'Y-m-d' }}: {{ day.status }}"
                      style="background-color: {{ day.color }}; "></div>
                 {% endfor %}
@@ -131,14 +131,14 @@
 
 
 <!-- Legend -->
-<div class="legend mt-4">
-    <span>Less</span>
-    <div class="day legend-color" style="background-color: #cccccc;"></div>
-    <div class="day legend-color" style="background-color: #f5caf3;"></div>
-    <div class="day legend-color" style="background-color: #f6a2eb;"></div>
-    <div class="day legend-color" style="background-color: #ea6cfa;"></div>
-    <span>More</span>
-</div>
+<!--<div class="row mt-4">-->
+<!--    <span class="bg-dark">Less</span>-->
+<!--    <div class="day legend-color" style="background-color: #cccccc;"></div>-->
+<!--    <div class="day legend-color" style="background-color: #f5caf3;"></div>-->
+<!--    <div class="day legend-color" style="background-color: #f6a2eb;"></div>-->
+<!--    <div class="day legend-color" style="background-color: #ea6cfa;"></div>-->
+<!--    <span>More</span>-->
+<!--</div>-->
 <style>
     .day{
     margin:1px;

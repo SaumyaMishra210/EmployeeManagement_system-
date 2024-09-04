@@ -14,8 +14,8 @@
     </div>
     {% endif %}
 
-    <form name="date" method="get" action="{% url 'modify_attendance' %}">
-        <div class="form-group">
+    <form class="col-md-3" name="date" method="get" action="{% url 'modify_attendance' %}">
+        <div class="form-group ">
             <label for="date">Select Date:</label>
             <input type="date" id="date" name="date" class="form-control" value="{{ selected_date }}">
         </div>

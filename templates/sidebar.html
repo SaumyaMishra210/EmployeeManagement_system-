@@ -1,7 +1,8 @@
 <!-- templates/sidebar.html -->
 <!--<div class="col-md-2  sidebar p-2" >-->
 <div class="list-group " style="background-color: #ccf9f4;">
-    <a href="#" class="list-group-item list-group-item-action active">Dashboard</a>
+    <h2 class="p-2">User : {{user}}</h2>
+    <a href="#" class="list-group-item list-group-item-action active">Dashboard </a>
     <a href="#" class="list-group-item list-group-item-action">Assign Work</a>
     <a href="#" class="list-group-item list-group-item-action">Notice</a>
     <a href="#" class="list-group-item list-group-item-action">Request</a>
@@ -15,10 +16,3 @@
     <a href="#" class="list-group-item list-group-item-action">Edit Assigned Work</a>
     <a href="{% url 'logout' %}" class="list-group-item list-group-item-action">Logout</a>
 </div>
-<!--    <div class="container">-->
-<!--    {{user.usrname}}-->
-<br>
-<h1>{{user}}</h1>
-<!--    <br>{{username}}-->
-<!--    </div>-->
-<!--</div>-->

@@ -1,6 +1,6 @@
 /* Centering the login container */
 body {
-   /* background-color: #d8f9c1;  Light background color */
+    background-color: #d8f9c1; /*  Light background color */
     display: flex;
     justify-content: center;
     align-items: center;

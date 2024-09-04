@@ -1,8 +1,7 @@
 /* static/css/styles.css */
-/*body {
+body {
     background-color: #d8f9c1;
  }
- */
 .sidebar {
     height: 100vh;
     position: fixed;
@@ -11,7 +10,8 @@
 .table td, .table th {
     vertical-align: middle;
 }
-/*--------------------------Attendence css Start---------------------------------- */
+
+/*--------------------------Attendence css Start---------------d8f9c1------------------- */
 
 .combined-attendance-summary {
     display: flex;
