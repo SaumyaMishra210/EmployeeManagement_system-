@@ -14,8 +14,20 @@
     </div>
     {% endif %}
 
-    <form class="col-md-3" name="date" method="get" action="{% url 'modify_attendance' %}">
-        <div class="form-group ">
+    <form class="" name="date" method="get" action="{% url 'modify_attendance' %}">
+        <label for="emp" class="col-md-3  col-form-label">Select EID:</label>
+            <div class="col-sm-4 col-md-3">
+                 <select name="emp" id="emp" class="form-control" required>
+                     <option value="" >Select an employee</option>
+                        {% for profile in emp_profiles %}
+                        <option value="{{ profile.user }}" {% if profile.user == user_profile.user %}selected{% endif %}>
+                            {{ profile.eid }} - {{ profile.user }}
+                        </option>
+                        {% endfor %}
+                </select>
+            </div>
+
+        <div class="form-group col-md-3">
             <label for="date">Select Date:</label>
             <input type="date" id="date" name="date" class="form-control" value="{{ selected_date }}">
         </div>
@@ -54,7 +66,7 @@
     {% else %}
     {% include 'recordNotFound.html' %}
     {% endif %}
-    <a href="{% url 'attendance' %}" class="btn btn-secondary">Back to Attendance</a>
+    <a href="{% url 'attendance_search' %}" class="btn btn-secondary">Back to Attendance</a>
 </div>
 
 

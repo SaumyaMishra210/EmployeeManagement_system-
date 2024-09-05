@@ -60,8 +60,8 @@ def userlogin(request):
         return redirect('index')
 
     if request.method == 'POST':
-        password = request.POST.get('password')
         eid = request.POST.get('eid')
+        password = request.POST.get('password')
 
         if eid:
             # Handle special case for admin login
