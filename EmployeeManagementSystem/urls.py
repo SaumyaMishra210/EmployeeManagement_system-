@@ -15,19 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from EMS import views
+from Base import views
 from django.urls import include
 from django.views.generic.base import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
-from EMS.views import *
+from Base.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include("EMS.urls")),
+    path('',include("Base.urls")),
     path('attendance',include('attendance.urls')),
     path('dashboard',include('dashboard.urls')),
     path('accounts', include('accounts.urls')),
+    path('notices',include('notices.urls')),
 ]
 # for Media Storage
 if settings.DEBUG:

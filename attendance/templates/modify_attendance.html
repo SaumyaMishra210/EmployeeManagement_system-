@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container mt-4">
-    <h1>Edit Attendance for {{ user_profile.user.username }}</h1>
+    <h1>Edit Attendance </h1>
 
     <!-- Display success or error messages -->
     {% if messages %}
@@ -17,7 +17,7 @@
     <form class="" name="date" method="get" action="{% url 'modify_attendance' %}">
         <label for="emp" class="col-md-3  col-form-label">Select EID:</label>
             <div class="col-sm-4 col-md-3">
-                 <select name="emp" id="emp" class="form-control" required>
+                 <select name="emp" id="emp" class="form-control" >
                      <option value="" >Select an employee</option>
                         {% for profile in emp_profiles %}
                         <option value="{{ profile.user }}" {% if profile.user == user_profile.user %}selected{% endif %}>

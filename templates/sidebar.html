@@ -4,12 +4,16 @@
     <h2 class="p-2">User : {{request.user}}</h2>
     <a href="#" class="list-group-item list-group-item-action active">Dashboard </a>
     <a href="#" class="list-group-item list-group-item-action">Assign Work</a>
-    <a href="#" class="list-group-item list-group-item-action">Notice</a>
+    <a href="{% url 'notice_list' %}" class="list-group-item list-group-item-action">Notice</a>
+    {% if is_HR %}
+        <a href="{% url 'notice_index' %}" class="list-group-item list-group-item-action">Notice Management</a>
+    {% endif %}
     <a href="#" class="list-group-item list-group-item-action">Request</a>
     <a href="{% url 'attendance_search' %}" class="list-group-item list-group-item-action">Attendance</a>
-    <a href="{% url 'get_yearly_attendance_status' %}" class="list-group-item list-group-item-action">Attendance Yearly</a>
-    {% if request.user.is_HR %}
-        <a href="{% url 'modify_attendance' %}" class="list-group-item list-group-item-action">Attendance Modify</a>
+    <a href="{% url 'get_yearly_attendance_status' %}" class="list-group-item list-group-item-action">Attendance
+        Yearly</a>
+    {% if is_HR %}
+        <a href="{% url 'modify_attendance' %}" class="list-group-item list-group-item-action">Attendance Management</a>
     {% endif %}
     <a href="#" class="list-group-item list-group-item-action">My Work</a>
     <a href="#" class="list-group-item list-group-item-action">Edit Assigned Work</a>

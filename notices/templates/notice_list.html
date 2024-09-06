@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container my-5">
+    <h3 class="text-center mb-4">Notices</h3>
+
+    <!-- Messages -->
+    <div>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show text-warning"
+             role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <!-- Notices List -->
+    <div class="chat-container">
+        {% if notices %}
+        {% for notice in notices %}
+        <div class="notice-item p-3 my-2 {{ forloop.counter|divisibleby:2|yesno:'bg-light:bg-white' }} rounded shadow-sm">
+            <div class="d-flex justify-content-between">
+                <h5 class="mb-1">{{ notice.title }}</h5>
+                <small class="text-muted">{{ notice.created_at|date:"M d, Y H:i" }}</small>
+            </div>
+            <p class="mb-1">{{ notice.content }}</p>
+            <small class="text-muted">Posted by: {{ notice.created_by }}</small>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p class="text-center alert alert-warning">No notices available.</p>
+        {% endif %}
+    </div>
+
+    <!-- Pagination Controls -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if notices.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1" aria-label="First">
+                    <span aria-hidden="true">&laquo;&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ notices.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% endif %}
+
+            {% for num in notices.paginator.page_range %}
+                {% if notices.number == num %}
+                    <li class="page-item active" aria-current="page"><span class="page-link">{{ num }}</span></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if notices.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ notices.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ notices.paginator.num_pages }}" aria-label="Last">
+                    <span aria-hidden="true">&raquo;&raquo;</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+
+</div>
+{% endblock content %}
