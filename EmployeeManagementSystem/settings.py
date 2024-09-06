@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'attendance',
     'Base',
     'notices',
+    'requests',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +66,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'Base.context_processors.is_hr_context',
+                'Base.context_processors.is_employee_context',
             ],
         },
     },

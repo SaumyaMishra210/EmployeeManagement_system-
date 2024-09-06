@@ -8,7 +8,7 @@
     {% if is_HR %}
         <a href="{% url 'notice_index' %}" class="list-group-item list-group-item-action">Notice Management</a>
     {% endif %}
-    <a href="#" class="list-group-item list-group-item-action">Request</a>
+    <a href="{% url 'request_dashboard' %}" class="list-group-item list-group-item-action">Request</a>
     <a href="{% url 'attendance_search' %}" class="list-group-item list-group-item-action">Attendance</a>
     <a href="{% url 'get_yearly_attendance_status' %}" class="list-group-item list-group-item-action">Attendance
         Yearly</a>

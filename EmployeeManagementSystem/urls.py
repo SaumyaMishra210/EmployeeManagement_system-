@@ -29,6 +29,7 @@ urlpatterns = [
     path('dashboard',include('dashboard.urls')),
     path('accounts', include('accounts.urls')),
     path('notices',include('notices.urls')),
+    path('requests',include('requests.urls')),
 ]
 # for Media Storage
 if settings.DEBUG:

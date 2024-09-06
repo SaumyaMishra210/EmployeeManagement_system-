@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-4">
+    <h2 class="text-center">Request Management</h2>
+    <div class="row my-5">
+        <!-- Display role-based buttons -->
+        {% if user.is_authenticated %}
+            {% if is_Employee %}
+                <div class="col-md-4 text-center">
+                    <a href="{% url 'create_request' %}" class="btn btn-primary btn-lg w-100 mb-3">Create Request</a>
+                </div>
+            {% endif%}
+            <div class="col-md-4 text-center">
+                <a href="{% url 'request_list' %}" class="btn btn-info btn-lg w-100 mb-3">View My Requests</a>
+            </div>
+            {% if is_HR %}
+            <div class="col-md-4 text-center">
+                <a href="{% url 'request_list_HR' %}" class="btn btn-success btn-lg w-100 mb-3">Manage Requests</a>
+            </div>
+            {% endif %}
+        {% else %}
+            <p class="text-center">Please log in to manage your requests.</p>
+        {% endif %}
+    </div>
+
+    <!-- Optional: Request Status Summary for HR -->
+
+    <div class="row text-center">
+        <div class="col-md-4">
+            <div class="card border-success">
+                <div class="card-body">
+                    <h5 class="card-title text-success">Accepted Requests</h5>
+                    <p class="card-text">{{ accepted_requests_count }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-warning">
+                <div class="card-body">
+                    <h5 class="card-title text-warning">Pending Requests</h5>
+                    <p class="card-text">{{ pending_requests_count }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-danger">
+                <div class="card-body">
+                    <h5 class="card-title text-danger">Rejected Requests</h5>
+                    <p class="card-text">{{ rejected_requests_count }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
