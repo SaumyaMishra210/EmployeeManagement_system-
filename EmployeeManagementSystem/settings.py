@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     'accounts',
     'attendance',
     'Base',
+    'dashboard',
     'notices',
     'requests',
+    'tasks',
+    'myWork',
 ]
 
 MIDDLEWARE = [

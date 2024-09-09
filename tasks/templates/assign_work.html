@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-5">
+    <h2>Assign Work</h2>
+    <form method="post"  enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Assign Task</button>
+        <a href="{% url 'task_list_hr' %}" class="btn btn-secondary">View All Tasks</a>
+    </form>
+</div>
+{% endblock %}

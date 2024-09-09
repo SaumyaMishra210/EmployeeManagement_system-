@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, login
 
 def signup(request):
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('user_details_view')
 
     if request.method == 'POST':
         form = UserSignupForm(request.POST)
@@ -48,7 +48,7 @@ def signup(request):
             # login(request, user)
             messages.success(request, 'Registration successful.')
 
-            return redirect('index')  # Redirect to a home page or dashboard after signup
+            return redirect('user_details_view')  # Redirect to a home page or dashboard after signup
     else:
         form = UserSignupForm()
 
@@ -57,7 +57,7 @@ def signup(request):
 
 def userlogin(request):
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('user_details_view')
 
     if request.method == 'POST':
         eid = request.POST.get('eid')
@@ -65,11 +65,11 @@ def userlogin(request):
 
         if eid:
             # Handle special case for admin login
-            if eid == 'admin':
-                user = authenticate(request, username=eid, password=password)
-                if user is not None and user.is_staff:  # Check if the user is admin and has staff status
-                    login(request, user)
-                    return redirect('index')  # Redirect to the admin panel
+            # if eid == 'admin':
+            #     user = authenticate(request, username=eid, password=password)
+            #     if user is not None and user.is_staff:  # Check if the user is admin and has staff status
+            #         login(request, user)
+            #         return redirect('user_details_view')  # Redirect to the admin panel
 
             # Employee, HR, Manager login with eid
             user = authenticate(request, eid=eid, password=password)
@@ -77,7 +77,7 @@ def userlogin(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, ' Login Successful.')
-                return redirect('index')  # Redirect to a custom dashboard view
+                return redirect('user_details_view')  # Redirect to a custom dashboard view
             else:
                 messages.error(request, 'Invalid login credentials.')
 

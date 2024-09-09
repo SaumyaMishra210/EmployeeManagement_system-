@@ -1,0 +1,29 @@
+/* Add this CSS to your main stylesheet or in a <style> tag in your base.html */
+
+.sidebar {
+    border-right: 1px solid #ddd;
+    height: 100vh; /* Full height */
+    overflow-y: auto; /* Scroll if content overflows */
+}
+
+.sidebar-header {
+    background-color: #b2f2f0; /* Lighter background for the header */
+    border-bottom: 2px solid #1e8e8e; /* Subtle border at the bottom */
+}
+
+.list-group-item {
+    border-radius: 0; /* Remove border-radius for a clean edge */
+}
+
+.list-group-item.active {
+    background-color: #1e8e8e; /* Darker background for the active item */
+    color: #fff;
+}
+
+.list-group-item:hover {
+    background-color: #a2d8d8; /* Hover effect */
+}
+
+.list-group-item-action {
+    transition: background-color 0.3s ease; /* Smooth background transition */
+}

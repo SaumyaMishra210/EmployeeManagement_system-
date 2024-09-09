@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}User Details{% endblock %}
+
+{% block content %}
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header text-white text-center" style="background-color: #1e8e8e; ">
+                    <h4>User Details</h4>
+                </div>
+
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4 text-center">
+                            <i class="bi bi-person-circle" style="font-size: 5rem; color: #6c757d;"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <h5>{{ user_detail.first_name }} {{ user_detail.last_name }}</h5>
+                            <p class="text-muted">{{ user_detail.designation }}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <table class="table table-borderless">
+                        <tbody>
+                        <tr>
+                            <th>Employee ID:</th>
+                            <td><span class="badge bg-info">{{ user_detail.eid }}</span></td>
+                        </tr>
+                        <tr>
+                            <th>First Name:</th>
+                            <td>{{ user_detail.first_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Middle Name:</th>
+                            <td>{{ user_detail.middle_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Last Name:</th>
+                            <td>{{ user_detail.last_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Phone Number:</th>
+                            <td>{{ user_detail.phone_number }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email:</th>
+                            <td>{{ user_detail.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date of Birth:</th>
+                            <td>{{ user_detail.dob }}</td>
+                        </tr>
+                        <tr>
+                            <th>Aadhar Number:</th>
+                            <td>{{ user_detail.aadhar_number }}</td>
+                        </tr>
+                        <tr>
+                            <th>Salary:</th>
+                            <td>{{ user_detail.salary }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{% url 'user_details_edit_self' %}" class="btn btn-success">Edit Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

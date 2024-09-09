@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Technical Profile{% endblock %}
+
+{% block content %}
+<h2>{{ profile.user.username }}'s Technical Profile</h2>
+<div class="profile">
+    <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" style="width: 150px; height: 150px;">
+    <p><strong>Position:</strong> {{ profile.position }}</p>
+    <p><strong>Experience:</strong> {{ profile.experience_years }} years</p>
+    <p><strong>Bio:</strong> {{ profile.bio }}</p>
+    <p><strong>Skills:</strong> {{ profile.skills_name }}</p>
+    <p><strong>Project Name:</strong> {{ profile.project_name }}</p>
+    <p><strong>Project Description:</strong> {{ profile.project_description }}</p>
+    <p><strong>Technologies Used:</strong> {{ profile.technologies_used }}</p>
+    <p><strong>Certification Name:</strong> {{ profile.certificate_name }}</p>
+    <p><strong>Issuing Organization:</strong> {{ profile.issuing_organization }}</p>
+    <a href="{% url 'technical_profile_edit' %}" class="btn btn-primary">Edit Technical Profile</a>
+</div>
+{% endblock %}

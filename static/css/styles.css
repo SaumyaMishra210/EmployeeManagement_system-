@@ -10,6 +10,9 @@ body {
 .table td, .table th {
     vertical-align: middle;
 }
+/*-------------------------- css Start---------------d8f9c1------------------- */
+
+
 
 /*--------------------------Attendence css Start---------------d8f9c1------------------- */
 
@@ -48,3 +51,8 @@ body {
     opacity: 0.7;
 }
 /*--------------------------Attendence css End---------------------------------- */
+/* styles.css */
+.card-header-custom {
+    background-color: #1e8e8e;
+    color: white;
+}
