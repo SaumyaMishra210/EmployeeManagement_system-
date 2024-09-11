@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-4">
+    <!-- Messages -->
+    <div>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show text-success"
+             role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <!--End Messages-->
+
+    <h2>Generate Salary Slip</h2>
+    <form method="post">
+        {% csrf_token %}
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <th>Employee</th>
+
+                <td>{{ form.employee }}</td>
+            </tr>
+            <tr>
+                <th>Month</th>
+                <td>{{ form.month }}</td>
+            </tr>
+            <tr>
+                <th>Year</th>
+                <td>{{ form.year }}</td>
+            </tr>
+            <tr>
+                <th>Base Salary</th>
+                <td>{{ form.base_salary }}</td>
+            </tr>
+            <tr>
+                <th>Allowances</th>
+                <td>{{ form.allowances }}</td>
+            </tr>
+            <tr>
+                <th>Deductions</th>
+                <td>{{ form.deductions }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Generate Slip</button>
+            <a href="{% url 'salary_slip_list' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

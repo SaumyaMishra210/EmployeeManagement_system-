@@ -3,26 +3,26 @@
     <div class="sidebar-header mb-4">
         <h2 class="p-2">Welcome, {{ request.user.username }}</h2>
     </div>
-    <div class="list-group">
+    <div class="list-group mb-5">
         <a href="{% url 'user_details_view' %}" class="list-group-item list-group-item-action active">Dashboard</a>
+        <a href="{% url 'attendance' %}" class="list-group-item list-group-item-action">Attendance</a>
+        <a href="{% url 'salary_slip_list' %}" class="list-group-item list-group-item-action">Salary Slip</a>
 
-        {% if is_Employee %}
-            <a href="{% url 'technical_profile_view' %}" class="list-group-item list-group-item-action">Technical Profile</a>
-            <a href="{% url 'task_list_employee' %}" class="list-group-item list-group-item-action">Assigned Work</a>
+        {% if is_Employee  %}
+        <a href="{% url 'technical_profile_view' %}" class="list-group-item list-group-item-action">Technical Profile</a>
+        <a href="{% url 'task_list_employee' %}" class="list-group-item list-group-item-action">Assigned Work</a>
         {% endif %}
 
-        {% if is_HR %}
-            <a href="{% url 'user_details_list' %}" class="list-group-item list-group-item-action">All Personal Profiles</a>
-            <a href="{% url 'employee_details_list' %}" class="list-group-item list-group-item-action">All Employees TechnicalProfile</a>
-            <a href="{% url 'assign_work' %}" class="list-group-item list-group-item-action">Assign Work</a>
-            <a href="{% url 'notice_list' %}" class="list-group-item list-group-item-action">Notice</a>
-            <a href="{% url 'notice_index' %}" class="list-group-item list-group-item-action">Notice Management</a>
-            <a href="{% url 'modify_attendance' %}" class="list-group-item list-group-item-action">Attendance Management</a>
+        {% if is_HR  or is_Admin %}
+        <a href="{% url 'user_details_list' %}" class="list-group-item list-group-item-action">All Personal Profiles</a>
+        <a href="{% url 'employee_details_list' %}" class="list-group-item list-group-item-action">All Employees TechnicalProfile</a>
+        <a href="{% url 'assign_work' %}" class="list-group-item list-group-item-action">Assign Work</a>
+        <a href="{% url 'task_list_hr' %}" class="list-group-item list-group-item-action">Task List</a>
+        <a href="{% url 'request_list_HR' %}" class="list-group-item list-group-item-action">Request Management</a>
+        <a href="{% url 'notice_index' %}" class="list-group-item list-group-item-action">Notice Management</a>
+        <a href="{% url 'modify_attendance' %}" class="list-group-item list-group-item-action">Attendance Management</a>
+        <a href="{% url 'generate_salary_slip' %}" class="list-group-item list-group-item-action">Generate Salary slip</a>
         {% endif %}
-
         <a href="{% url 'request_dashboard' %}" class="list-group-item list-group-item-action">Request</a>
-        <a href="{% url 'attendance_search' %}" class="list-group-item list-group-item-action">Attendance</a>
-        <a href="{% url 'get_yearly_attendance_status' %}" class="list-group-item list-group-item-action">Attendance Yearly</a>
-        <a href="{% url 'logout' %}" class="list-group-item list-group-item-action">Logout</a>
     </div>
 </div>

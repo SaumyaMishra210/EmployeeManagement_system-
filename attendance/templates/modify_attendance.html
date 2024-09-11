@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 <div class="container mt-4">
-    <h1>Edit Attendance </h1>
+    <h1>Edit Attendance</h1>
 
     <!-- Display success or error messages -->
     {% if messages %}
@@ -14,47 +13,46 @@
     </div>
     {% endif %}
 
-    <form class="" name="date" method="get" action="{% url 'modify_attendance' %}">
-        <label for="emp" class="col-md-3  col-form-label">Select EID:</label>
-            <div class="col-sm-4 col-md-3">
-                 <select name="emp" id="emp" class="form-control" >
-                     <option value="" >Select an employee</option>
-                        {% for profile in emp_profiles %}
-                        <option value="{{ profile.user }}" {% if profile.user == user_profile.user %}selected{% endif %}>
-                            {{ profile.eid }} - {{ profile.user }}
-                        </option>
-                        {% endfor %}
-                </select>
-            </div>
+    <!-- Form to select Employee and Date -->
+    <form name="date" method="get" action="{% url 'modify_attendance' %}" class="form-row align-items-end">
+        <div class="form-group col-md-4">
+            <label for="emp">Select EID:</label>
+            <select name="emp" id="emp" class="form-control">
+                <option value="">Select an employee</option>
+                {% for profile in emp_profiles %}
+                <option value="{{ profile.user }}" {% if profile.user == user_profile.user %}selected{% endif %}>
+                    {{ profile.eid }} - {{ profile.user }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
 
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-4">
             <label for="date">Select Date:</label>
             <input type="date" id="date" name="date" class="form-control" value="{{ selected_date }}">
         </div>
-        <button type="submit" class="btn btn-primary">View Record</button>
+
+        <div class="form-group col-md-4">
+            <button type="submit" class="btn btn-primary btn-block">View Record</button>
+        </div>
     </form>
 
+    <!-- Editable Attendance Form -->
     {% if not recordNotFound %}
-    <!--  Editable Attendance form -->
     <form method="POST" novalidate>
         {% csrf_token %}
-        <table class="table table-bordered">
+        <table class="table table-bordered mt-4">
             <thead>
-            <tr>
-                <th>Date</th>
-                <th>Status</th>
-            </tr>
+                <tr>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>
-                    {{ form.date }}
-                </td>
-                <td>
-                    {{form.attendance_type}}
-                </td>
-            </tr>
-
+                <tr>
+                    <td>{{ form.date }}</td>
+                    <td>{{ form.attendance_type }}</td>
+                </tr>
             </tbody>
         </table>
 
@@ -62,12 +60,27 @@
             <button type="submit" class="btn btn-primary">Save Changes</button>
         </div>
     </form>
-
     {% else %}
-    {% include 'recordNotFound.html' %}
-    {% endif %}
-    <a href="{% url 'attendance_search' %}" class="btn btn-secondary">Back to Attendance</a>
+        <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-light shadow-sm">
+                <div class="card-header" style="background-color: #1e8e8e; color: white;">
+                    <h4 class="mb-0 text-center">No Search Criteria Selected</h4>
+                </div>
+                <div class="card-body text-center">
+                    <div class="mb-4">
+                        <i class="bi bi-search" style="font-size: 4rem; color: #007bff;"></i>
+                    </div>
+                    <p class="lead">It looks like you haven't selected any criteria to search for.</p>
+                    <p>Please go back and choose a value to search.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+    {% endif %}
 
-
+    <a href="{% url 'attendance_search' %}" class="btn btn-secondary mt-3">Back to Attendance</a>
+</div>
 {% endblock %}

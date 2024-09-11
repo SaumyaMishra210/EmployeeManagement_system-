@@ -13,12 +13,12 @@
             </tr>
         </thead>
         <tbody>
-            {% for request in requests %}
+            {% for req in requests_list %}
             <tr>
-                <td>{{ request.id }}</td>
-                <td>{{ request.title }}</td>
-                <td>{{ request.description }}</td>
-                <td>{{ request.status }}</td>
+                <td>{{ req.id }}</td>
+                <td>{{ req.title }}</td>
+                <td>{{ req.description }}</td>
+                <td>{{ req.status }}</td>
 
             </tr>
             {% empty %}

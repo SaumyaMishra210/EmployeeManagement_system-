@@ -67,6 +67,7 @@
 
 
 {% block month_record %}
+{% if monthly_summary %}
     <div >
     <!-- summarise monthly breakdown-->
     <div class="card">
@@ -156,8 +157,8 @@
         </div>
     </div>
 
-</div>
-
+    </div>
+{% endif %}
 {% endblock month_record %}
 
 

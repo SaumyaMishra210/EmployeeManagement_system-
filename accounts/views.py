@@ -1,15 +1,20 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import user_passes_test
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import Group
+
+from Base.permissions import is_HR, is_Employee
 from .forms import UserSignupForm
 from .models import *
 from django.contrib.auth import authenticate, login
 
 
 def signup(request):
-    if request.user.is_authenticated:
-        return redirect('user_details_view')
+    is_Employee = request.user.groups.filter(name='Employee').exists()
+    if is_Employee:
+        raise PermissionDenied("Access Denied: You do not have permission to access this page.")
 
     if request.method == 'POST':
         form = UserSignupForm(request.POST)
@@ -33,10 +38,6 @@ def signup(request):
                     hr_group = Group.objects.get(name='HR')
                     user.groups.add(hr_group)
                     HRProfile.objects.create(user_profile=user_profile)
-                elif role == 'Manager':
-                    manager_group = Group.objects.get(name='Manager')
-                    user.groups.add(manager_group)
-                    ManagerProfile.objects.create(user_profile=user_profile)
                 elif role == 'Employee':
                     employee_group = Group.objects.get(name='Employee')
                     user.groups.add(employee_group)
@@ -65,11 +66,11 @@ def userlogin(request):
 
         if eid:
             # Handle special case for admin login
-            # if eid == 'admin':
-            #     user = authenticate(request, username=eid, password=password)
-            #     if user is not None and user.is_staff:  # Check if the user is admin and has staff status
-            #         login(request, user)
-            #         return redirect('user_details_view')  # Redirect to the admin panel
+            if eid == 'admin':
+                user = authenticate(request, username=eid, password=password)
+                if user is not None and user.is_staff:  # Check if the user is admin and has staff status
+                    login(request, user)
+                    return redirect('user_details_view')  # Redirect to the admin panel
 
             # Employee, HR, Manager login with eid
             user = authenticate(request, eid=eid, password=password)

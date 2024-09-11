@@ -11,17 +11,16 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
 </head>
-<body>
+<body style="background-color:#ffffff">
 
 <div class="container">
     <div class="row justify-content-center align-items-center min-vh-100">
         <div class="col-md-8">
-            <div class="card login-card shadow">
+            <div class="card login-card shadow-lg">
                 <div class="row no-gutters">
 
-
                     <!-- Left Image Section -->
-                    <div class="col-md-6">
+                    <div class="col-md-6 d-none d-md-block">
                         <!-- Messages -->
                         <div>
                             {% if messages %}
@@ -38,7 +37,7 @@
                         </div>
                         <!--End Messages-->
 
-                        <img src="{% static 'images/Team.jpg' %}" class="card-img" alt="Login Image">
+                        <img src="{% static 'images/Team.jpg' %}" class="card-img" alt="Login Image" style="object-fit: cover; height: 100%;">
                     </div>
 
                     <!-- Right Form Section -->
@@ -51,7 +50,7 @@
                                 <div class="form-group">
                                     <label for="eid">Employee Id</label>
                                     <input type="text" class="form-control" id="eid" name="eid"
-                                           placeholder="Enter your  Employee ID">
+                                           placeholder="Enter your Employee ID">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
@@ -59,9 +58,7 @@
                                            placeholder="Enter your password">
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-block">Login</button>
-                                <div class="text-center mt-3">
-                                    <a href="{% url 'signup' %}">New Employee</a>
-                                </div>
+
                             </form>
                         </div>
                     </div>
@@ -70,6 +67,7 @@
         </div>
     </div>
 </div>
+
 <!-- JavaScript for Bootstrap (Optional) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>

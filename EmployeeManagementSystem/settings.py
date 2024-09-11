@@ -40,9 +40,10 @@ INSTALLED_APPS = [
     'Base',
     'dashboard',
     'notices',
-    'requests',
+    'requests_app',
     'tasks',
     'myWork',
+    'Salary',
 ]
 
 MIDDLEWARE = [
@@ -68,8 +69,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'Base.context_processors.is_hr_context',
-                'Base.context_processors.is_employee_context',
+                # 'Base.context_processors.is_hr_context',
+                # 'Base.context_processors.is_employee_context',
+                # 'Base.context_processors.is_admin_context',
+                'Base.context_processors.user_roles',
             ],
         },
     },
@@ -117,6 +120,8 @@ AUTHENTICATION_BACKENDS = [
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Kolkata'
+
+USE_L10N = True
 
 USE_I18N = True
 

@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 
+from Base.permissions import is_HR
+
+
 def base(request):
-    is_HR = request.user.groups.filter(name='HR').exists()
+    # is_HR = request.user.groups.filter(name='HR').exists()
     return render(request,'base.html',{'is_HR':is_HR})
 
 def home(request):

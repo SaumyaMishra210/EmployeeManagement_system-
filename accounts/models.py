@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 ROLE_CHOICES = (
     ('Admin', 'Admin'),
     ('HR', 'HR'),
-    ('Manager', 'Manager'),
     ('Employee', 'Employee'),
 )
 
@@ -41,11 +40,6 @@ class HRProfile(models.Model):
         return f"HR Profile for {self.user_profile}"
 
 
-class ManagerProfile(models.Model):
-    user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"Manager Profile for {self.user_profile}"
 
 
 class EmployeeProfile(models.Model):

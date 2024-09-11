@@ -23,3 +23,22 @@ def is_employee_context(request):
         is_Employee = request.user.groups.filter(name='Employee').exists()  # Update as per your logic
 
     return {'is_Employee': is_Employee}
+
+def is_admin_context(request):
+    """
+    Returns a context dictionary with is_HR value,
+    indicating whether the logged-in user is an HR.
+    """
+    is_Admin = False
+    if request.user.is_authenticated:
+        # Replace 'hr' with the actual role or condition to check if the user is HR.
+        is_Admin = request.user.groups.filter(name='Admin').exists()  # Update as per your logic
+
+    return {'is_Admin': is_Admin}
+
+def user_roles(request):
+    return {
+        'is_HR': request.user.groups.filter(name='HR').exists(),
+        'is_Employee': request.user.groups.filter(name='Employee').exists(),
+        'is_Admin': request.user.is_superuser,
+    }

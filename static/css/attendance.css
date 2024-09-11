@@ -39,7 +39,7 @@
     }
 .month {
         flex: 0 0 auto;
-        width: 110px;
+        width: 150px;
     }
 .month-name {
         text-align: center;

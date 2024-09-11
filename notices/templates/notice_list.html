@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="container my-5">
-    <h3 class="text-center mb-4">Notices</h3>
+    <h3 class="text-center ">Notices</h3>
 
     <!-- Messages -->
     <div>
@@ -20,7 +20,7 @@
     </div>
 
     <!-- Notices List -->
-    <div class="chat-container">
+    <div class="chat-container mt-0">
         {% if notices %}
         {% for notice in notices %}
         <div class="notice-item p-3 my-2 {{ forloop.counter|divisibleby:2|yesno:'bg-light:bg-white' }} rounded shadow-sm">

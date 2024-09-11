@@ -6,15 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <title>Sign Up</title>
-    <!-- Link to Bootstrap (Optional) -->
+    <!-- Bootstrap 4 CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+    <style>
+        body {
+            background-color: #f7f9fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .login-form h2 {
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #1e8e8e;
+            text-align: center;
+        }
+        .imgs img {
+            width: 100px;
+            display: block;
+            margin: 0 auto 20px;
+        }
+        .btn-primary {
+            background-color: #1e8e8e;
+            border-color: #1e8e8e;
+            width: 100%;
+        }
+        .btn-primary:hover {
+            background-color: #157575;
+            border-color: #157575;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .text-success {
+            font-weight: 600;
+        }
+        .alert {
+            margin-bottom: 20px;
+        }
+        .login {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
 </head>
 <body>
-<!--MEssages-->
 <!-- Messages -->
-<div>
+<div class="">
     {% if messages %}
     {% for message in messages %}
     <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show text-success"
@@ -27,91 +80,73 @@
     {% endfor %}
     {% endif %}
 </div>
-<!--End Messages-->
+<!-- End Messages -->
+
 <div class="login">
-    <div class="imgs"><img src="{% static 'images/welcome.webp' %}"></div>
-    <div class="login-form">
-        SIGN UP
-        <form method="post" name='signup'>
-            {% csrf_token %}
-            <table class="table">
-                <div class="form-group">
-                    {{ form.username.label_tag }}
+<!--    <div class="imgs">-->
+<!--            <img src="{% static 'images/welcome.webp' %}" alt="Welcome">-->
+<!--        </div>-->
+<!--    <div class="login-form">-->
+
+    <form method="post" name='signup'>
+        {% csrf_token %}
+        <h2>Sign Up</h2>
+        <table class="table">
+            <tr>
+                <td>
+                    <label for="id_username">{{ form.username.label_tag }}</label>
+                </td>
+                <td>
                     {{ form.username }}
                     {{ form.username.errors }}
-                </div>
-
-                <div class="form-group">
-                    {{ form.email.label_tag }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="id_email">{{ form.email.label_tag }}</label>
+                </td>
+                <td>
                     {{ form.email }}
                     {{ form.email.errors }}
-                </div>
-                <div class="form-group">
-                    {{ form.role.label_tag }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="id_role">{{ form.role.label_tag }}</label>
+                </td>
+                <td>
                     {{ form.role }}
                     {{ form.role.errors }}
-                </div>
-
-                <div class="form-group">
-                    {{ form.password1.label_tag }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="id_password1">{{ form.password1.label_tag }}</label>
+                </td>
+                <td>
                     {{ form.password1 }}
                     {{ form.password1.errors }}
-                </div>
-                <div class="form-group">
-                    {{ form.password2.label_tag }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="id_password2">{{ form.password2.label_tag }}</label>
+                </td>
+                <td>
                     {{ form.password2 }}
                     {{ form.password2.errors }}
-                </div>
-            </table>
-            <button type="submit">Sign Up</button>
-        </form>
-        <a href="{% url 'login' %}">
-            <button type="submit" class="btn-success">Log In</button>
-        </a>
+                </td>
+            </tr>
+        </table>
 
+        <button type="submit" class="btn btn-primary mb-3">Sign Up</button>
 
-        <!--        <form action="" method="post">-->
-        <!--            {% csrf_token %}-->
-        <!--            <table>-->
-        <!--                <tr>-->
-        <!--                    <td>Id</td>-->
-        <!--                </tr>-->
-        <!--                <tr>-->
-        <!--                    <td><input type="text" name="id" required></td>-->
-        <!--                    <br>-->
-        <!--                </tr>-->
-        <!--                <tr class="pass">-->
-        <!--                    <td><br>Password</td>-->
-        <!--                </tr>-->
-        <!--                <tr>-->
-        <!--                    <td><input type="password" name="password" required></td>-->
-        <!--                    <br>-->
-        <!--                </tr>-->
-        <!--                <tr class="pass">-->
-        <!--                    <td><br>Confirm Password</td>-->
-        <!--                </tr>-->
-        <!--                <tr>-->
-        <!--                    <td><input type="password" name="cnfpass" required></td>-->
-        <!--                    <br>-->
-        <!--                </tr>-->
-        <!--            </table>-->
-        <!--            <input type="submit" value="Sign Up"><br><br>-->
+        <a href="{% url 'login' %}" class="btn btn-secondary btn-block">Log In</a>
+    </form>
+<!--</div>-->
 
-        <!--            {% for msg in messages %}-->
-        <!--            {% if msg == "Registered Successfully" %}-->
-        <!--            <div class="success_message">-->
-        <!--                {{msg}}-->
-        <!--            </div>-->
-        <!--            {% else %}-->
-        <!--            <div class="err_message">-->
-        <!--                {{msg}}-->
-        <!--            </div>-->
-        <!--            {% endif %}-->
-        <!--            {% endfor %}-->
-
-        <!--        </form>-->
-    </div>
 </div>
+
 <!-- JavaScript for Bootstrap (Optional) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>

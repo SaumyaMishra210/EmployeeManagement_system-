@@ -1,64 +1,57 @@
-<!-- templates/attendance.html -->
 {% extends 'base.html' %}
 {% block title %}Attendance Search{% endblock %}
 
 {% block content %}
-<h2>Attendance</h2>
+<div class="container mt-4">
+    <h2 class="mb-4 text-center" style="color: #1e8e8e;">Attendance Search</h2>
 
-<!-- Month and Year Selection Form -->
-<form method="get" action="{% url 'attendance' %}" class="mb-4">
-    <div class="form-group  ">
-
-        {% if is_HR %}
-            <label for="month" class="col-sm-2 col-form-label">Select EID:</label>
-            <div class="col-sm-4">
-                 <select name="emp" id="emp" class="form-control" required>
-                     <option value="" >Select an employee</option>
+    <!-- Month and Year Selection Form -->
+    <form method="get" action="{% url 'attendance' %}" class="bg-light p-4 rounded shadow-sm">
+        <div class="row mb-3">
+            {% if is_HR %}
+                <div class="col-md-4 mb-3">
+                    <label for="emp" class="form-label">Select EID:</label>
+                    <select name="emp" id="emp" class="form-select" required>
+                        <option value="">Select an employee</option>
                         {% for profile in emp_profiles %}
-                        <option value="{{ profile.user }}" {% if profile.user == user_profile.user %}selected{% endif %}>
-                            {{ profile.eid }} - {{ profile.user }}
-                        </option>
+                            <option value="{{ profile.user }}" {% if profile.user == user_profile.user %}selected{% endif %}>
+                                {{ profile.eid }} - {{ profile.user }}
+                            </option>
                         {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+
+            <div class="col-md-4 mb-3">
+                <label for="month" class="form-label">Select Month:</label>
+                <select name="month" id="month" class="form-select" required>
+                    {% for m in months %}
+                        <option value="{{ m.value }}" {% if m.value == selected_month %}selected{% endif %}>
+                            {{ m.name }}
+                        </option>
+                    {% endfor %}
                 </select>
             </div>
-        {% endif %}
 
-        <label for="month" class="col-sm-2 col-form-label">Select Month:</label>
-        <div class="col-sm-4">
-            <select name="month" id="month" class="form-control" required>
-                {% for m in months %}
-                <option value="{{ m.value }}" {% if m.value == selected_month %}selected{% endif %}>
-                    {{ m.name }}
-                </option>
-                {% endfor %}
-            </select>
+            <div class="col-md-4 mb-3">
+                <label for="year" class="form-label">Select Year:</label>
+                <select name="year" id="year" class="form-select" required>
+                    {% for y in years %}
+                        <option value="{{ y }}" {% if y == selected_year %}selected{% endif %}>
+                            {{ y }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
         </div>
 
-        <label for="year" class="col-sm-2 col-form-label">Select Year:</label>
-        <div class="col-sm-4">
-            <select name="year" id="year" class="form-control" required>
-                {% for y in years %}
-                <option value="{{ y }}" {% if y == selected_year %}selected{% endif %}>
-                    {{ y }}
-                </option>
-                {% endfor %}
-            </select>
+        <div class="d-flex justify-content-start mb-4">
+            <button type="submit" class="btn mr-2" style="background-color: #1e8e8e; color: white;">Search</button>
+
+            {% if is_HR %}
+                <a href="{% url 'modify_attendance' %}" class="btn btn-secondary ms-2">Edit Record</a>
+            {% endif %}
         </div>
-    </div>
-    <a href="{% url 'attendance' %}">
-        <button type="submit" class="btn btn-primary">Search</button>
-    </a>
-
-
-<!--    <a href="{% url 'get_yearly_attendance_status' %}">-->
-<!--        <button type="button" class="btn btn-primary">Year Records</button>-->
-<!--    </a>-->
-
-    {% if   is_HR %}
-    <a href="{% url 'modify_attendance'  %}">
-        <button type="button" class="btn btn-primary">Edit Record</button>
-    </a>
-    {% endif %}
-</form>
-
+    </form>
+</div>
 {% endblock content %}

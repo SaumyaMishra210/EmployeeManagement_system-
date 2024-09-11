@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-4">
+    <h2>Salary Slips</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Employee</th>
+                <th>Month</th>
+                <th>Year</th>
+                <th>Base Salary</th>
+                <th>Allowances</th>
+                <th>Deductions</th>
+                <th>Total Salary</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for slip in salary_slips %}
+            <tr>
+                <td>{{ slip.employee}}</td>
+                <td>{{ slip.month }}</td>
+                <td>{{ slip.year }}</td>
+                <td>{{ slip.base_salary }}</td>
+                <td>{{ slip.allowances }}</td>
+                <td>{{ slip.deductions }}</td>
+                <td>{{ slip.total_salary }}</td>
+                <td>
+                    <a href="{% url 'download_salary_slip' slip.pk %}" class="btn btn-primary">Download</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">No salary slips available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

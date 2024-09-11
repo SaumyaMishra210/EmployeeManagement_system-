@@ -20,9 +20,6 @@ class AdminProfileAdmin(admin.ModelAdmin):
 class HRProfileAdmin(admin.ModelAdmin):
     list_display = get_all_field_names(HRProfile)
 
-@admin.register(ManagerProfile)
-class ManagerProfileAdmin(admin.ModelAdmin):
-    list_display = get_all_field_names(ManagerProfile)
 
 
 @admin.register(EmployeeProfile)

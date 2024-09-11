@@ -30,8 +30,9 @@ urlpatterns = [
     path('accounts', include('accounts.urls')),
     path('myWork',include('myWork.urls')),
     path('notices',include('notices.urls')),
-    path('requests',include('requests.urls')),
+    path('requests_app',include('requests_app.urls')),
     path('tasks',include('tasks.urls')),
+    path('salary/',include('Salary.urls')),
 ]
 # for Media Storage
 if settings.DEBUG:
